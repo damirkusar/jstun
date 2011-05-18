@@ -1,0 +1,208 @@
+--- Fork of Thomas King JSTUN implementation. This fork is here to try it to modify for jVoiceBridge ---
+Modifiers: Damir Kusar, Roman Speck
+
+
+"JSTUN" - Java Simple Traversal of User Datagram Protocol (UDP) Through Network Address Translation (NAT)
+
+(by Thomas King - king[at]t-king.de - http://www.t-king.de)
+
+ 
+
+What is "JSTUN"?
+
+"JSTUN" is a Java-based STUN (Simple Traversal of User Datagram Protocol (UDP) Through Network Address Translation (NAT)) implementation. STUN provides a mean for applications to discover the presence and type of firewalls or NATs between them and the public internet. Additionally, in presence of a NAT STUN can be used by applications to learn the public Internet Protocol (IP) address assigned to the NAT.
+
+So far, most of the message headers and attributes as standardized in RFC 3489 are part of "JSTUN". The current "JSTUN" version also includes a STUN client and a STUN server. "JSTUN" is dual-licensed under GNU General Public License iversion 2.0 and Apache License version 2.0.
+
+ 
+
+How does it work?
+
+STUN is described in RFC 3489.
+Just invoke "java -cp jstun-0.7.3.jar:slf4j-api-1.5.6.jar:slf4j-jdk14-1.5.6.jar de.javawi.jstun.test.demo.DiscoveryTestDemo" or use the de.javawi.jstun.test.demo.DiscoveryTest and de.javawi.jstun.test.demo.BindingLifetimeTest classes.
+ 
+
+What about RFC 5389?
+
+I am looking for a way to enhance the current "JSTUN" implementation to support the new Session Traversal Utilities for NAT (STUN) protocol as described in RFC 5389. If you are interested in supporting this effort with code or money please drop me a mail (king[at]t-king.de).
+
+ 
+
+Limits?
+
+Due to the lack of fully RFC compliant STUN servers I could not test the shared secret request / response functionality. Additionally, the message attribute username, password and message integrity are not tested for the same reason. The implementation of the message attribute message integrity is not completed, because I see no reason to add a cryptographic library as long as no public available STUN server supports message integrity.
+
+The reality is not as dark as it might seem after reading the previous section. All tested STUN servers provided a minimal set of functionality that is required to discover firewalls and NATs.
+
+If you found a bug or if you want to implement enhancements or additional functionalities please do not hesitate to contact me by email. A CVS account can be provided if needed.
+
+ 
+
+What do you need?
+
+A Java 6 compliant Java Runtime Environment is required by "JSTUN".
+
+ 
+
+Download?
+
+Currently, the latest version of "JSTUN" is 0.7.3.
+
+jar-Files: jstun-0.7.3.jar slf4j-api-1.5.6.jar slf4j-jdk14-1.5.6.jar
+
+source-File: jstun-0.7.3.src.tar.gz
+
+ 
+
+Donation?
+
+Donating a small amount of money directly supports the developers of "JSTUN" and encourage them to add further improvements. To make a donation just click on the PayPal button. Thank you!
+
+ 
+ 
+
+ToDo:
+
+- complete message attribute message integrity
+
+- verify all untested attributes and message types (already done)
+
+ 
+
+Special thanks:
+
+- Thomas Butter: He is my alpha geek hero! ;-)
+
+- Jim Morris: Great beta tester! He owns a lot of different NATs. ;-) THANKS!
+
+- Jeff Williams: He is a great contributor.
+
+- Jasmin Meyer: Just a nice person.
+
+ 
+
+Associated projects:
+
+- LimeWire - Open Source P2P File Sharing
+
+- University of Washington - Computer Science and Engineering - Introduction to Computer-Communication Networks
+
+- Jive Software: Smack API
+
+- Freecast - Peer-to-peer streaming
+
+- STUN - Simple Traversal of UDP Through NATs - Ein Überblick über das Protokoll
+
+- Astalavista Group Security Newsletter Issue 18
+
+- JavaTools Community Newsletter
+
+- IChessU - International Chess University
+
+- spontaneous-desktop-grid
+
+- STUN Stack Port for Android
+
+ 
+
+ChangeLog:
+
+Version 0.7.3 (05/22/09):
+
+A lot of minor improvements (thanks to Jeff)
+Simple logging facade (SLF4J) added (thanks to Jeff)
+ 
+
+Version 0.7.2:
+
+Developer release (not public available)
+
+ 
+
+Version 0.7.1 (12/12/07):
+
+BindingLifetimeTestDemo checks only IPv4 addresses
+The server crashes if an invader sends malformed packets. This problem is fixed in the current release.
+ 
+
+Version 0.7.0 (11/01/07):
+
+Minor bugfix in the detection of symmetric NATs
+A "JSTUN"-based STUN server is now available. Just try it (assuming you own a dual-homed machine): java -cp jstun-0.7.3.jar:slf4j-api-1.5.6.jar:slf4j-jdk14-1.5.6.jar de.javawi.jstun.test.demo.StunServer PORT1 IP1 PORT2 IP2. Also, a server is running on jstun.javawi.de:3478.
+ 
+
+Version 0.6.1 (08/29/06):
+
+JSTUN is now dual licensed: GPLv2 and Apache License 2.0
+ 
+
+Version 0.6.0 (05/25/06):
+
+Support for multiple network cards added
+Refactored Tests and Demos
+ 
+
+Version 0.5.9.2 (03/17/06):
+
+Bug in ErrorCode handling fixed (thanks to Thomas Butter)
+Improved exception handling in DiscoveryTest and BindingLifetimeTest
+Copyright statement corrected
+ 
+
+Version 0.5.9.1 (10/30/05):
+
+Bugfix in DiscoveryTest
+ 
+
+Version 0.5.9 (08/26/05):
+
+DiscoveryInfo: public IP added
+ 
+
+Version 0.5.8 (08/22/05):
+
+DiscoveryTest: test2 bugfix (Full Cone NAT)
+DiscoveryTest: test3 bugfix ((Port) Restricted Cone)
+DiscoveryTest: test1redo bugfix (Symmetric NAT)
+DiscoveryTest: socket reorganization
+ 
+
+Version 0.5.2 - 0.5.7 (08/22/05):
+
+Developer releases (not public available)
+
+ 
+
+Version 0.5.1 (08/21/05):
+
+Bugfix: Address
+A few JUnit tests added
+Logging enhancements
+ 
+
+Version 0.5 (07/08/05):
+
+Binding lifetime discovery test added (RFC 3489: 10.2) - What is the UDP binding duration of your router? Please send me your router modell and binding duration value.
+Minor code cleanup
+ 
+
+Version 0.4 (06/18/05):
+
+additional message attributes supported
+DiscoveryInfo object handling added
+ 
+
+Version 0.3 (06/17/05):
+
+minor bugfixes
+ 
+
+Version 0.2 (06/16/05):
+
+shared secret request / response messages implemented
+ 
+
+Version 0.1 (06/15/05):
+
+initial version
+a minimal set of message and attribute types are supported
